@@ -1,0 +1,13 @@
+include: package:effective_dart/analysis_options.yaml
+analyzer:
+  exclude:
+    - "lib/i10n/"
+    - "lib/generated/intl/messages_all.dart"
+    - "lib/generated/intl/messages_en.dart"
+
+linter:
+  rules:
+    omit_local_variable_types: false
+    public_member_api_docs: false
+    lines_longer_than_80_chars: false
+    avoid_catching_errors: false

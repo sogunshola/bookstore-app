@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../configs/api.dart';
+import '../configs/http_client.dart';
 import '../models/pagination_model.dart';
 
 abstract class AbstractApiService extends HttpClient {

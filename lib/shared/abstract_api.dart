@@ -9,7 +9,7 @@ abstract class AbstractApiService extends HttpClient {
   Future getAll(
       {PaginationModel pagination,
       Map<String, dynamic> args = const {}}) async {
-    return await get(url: '', data: {
+    return await get(data: {
       "page": pagination.page,
       "perPage": pagination.perPage,
       ...args
@@ -21,7 +21,7 @@ abstract class AbstractApiService extends HttpClient {
   }
 
   Future create({dynamic payload}) async {
-    return await post(url: '', data: payload);
+    return await post(data: payload);
   }
 
   Future update(String id, {dynamic payload}) async {

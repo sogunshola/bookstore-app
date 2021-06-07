@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../configs/app_globals.dart';
 import '../../../configs/constants.dart';
@@ -138,9 +139,61 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Text(state.error),
                         );
                       }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return ListView.separated(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, i) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Card(
+                                    elevation: 2,
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.2,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      child: Shimmer.fromColors(
+                                          child: Container(
+                                            width: 48.0,
+                                            height: 48.0,
+                                            color: Theme.of(context).cardColor,
+                                          ),
+                                          baseColor:
+                                              Theme.of(context).cardColor,
+                                          highlightColor: kGrey),
+                                    ),
+                                  ),
+                                  const Gap(15),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    child: Shimmer.fromColors(
+                                        child: Container(
+                                          width: 48.0,
+                                          height: 10.0,
+                                          color: Theme.of(context).cardColor,
+                                        ),
+                                        baseColor: Theme.of(context).cardColor,
+                                        highlightColor: kGrey),
+                                  ),
+                                  const Gap(10),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      child: Shimmer.fromColors(
+                                          child: Container(
+                                            width: 48.0,
+                                            height: 10.0,
+                                            color: Theme.of(context).cardColor,
+                                          ),
+                                          baseColor:
+                                              Theme.of(context).cardColor,
+                                          highlightColor: kGrey))
+                                ],
+                              ),
+                          separatorBuilder: (context, index) => const Gap(20),
+                          itemCount: 3);
                     }),
               ),
               const Gap(10),
@@ -267,8 +320,78 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(state.error),
                       );
                     }
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, i) => Container(
+                        height: 140,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 200,
+                              width: 100,
+                              child: Shimmer.fromColors(
+                                  child: Container(
+                                    width: 48.0,
+                                    height: 48.0,
+                                    color: Theme.of(context).cardColor,
+                                  ),
+                                  baseColor: Theme.of(context).cardColor,
+                                  highlightColor: kGrey),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Shimmer.fromColors(
+                                          child: Container(
+                                            width: 200.0,
+                                            height: 10.0,
+                                            color: Theme.of(context).cardColor,
+                                          ),
+                                          baseColor:
+                                              Theme.of(context).cardColor,
+                                          highlightColor: kGrey),
+                                      const Gap(10),
+                                      Shimmer.fromColors(
+                                          child: Container(
+                                            width: 120.0,
+                                            height: 10.0,
+                                            color: Theme.of(context).cardColor,
+                                          ),
+                                          baseColor:
+                                              Theme.of(context).cardColor,
+                                          highlightColor: kGrey),
+                                    ],
+                                  ),
+                                ),
+                                Shimmer.fromColors(
+                                    child: Container(
+                                      width: 200.0,
+                                      height: 10.0,
+                                      color: Theme.of(context).cardColor,
+                                    ),
+                                    baseColor: Theme.of(context).cardColor,
+                                    highlightColor: kGrey),
+                                Container()
+                              ],
+                            ),
+                            Container()
+                          ],
+                        ),
+                      ),
+                      separatorBuilder: (context, index) => const Gap(20),
+                      itemCount: 4,
                     );
                   })
             ],

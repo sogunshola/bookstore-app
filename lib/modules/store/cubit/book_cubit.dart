@@ -26,21 +26,6 @@ class BookCubit extends Cubit<BookState> {
     }
   }
 
-  // Future<void> getPopularBooks() async {
-  //   final currentState = state;
-  //   try {
-  //     final books = await _bookRepository.getPopularBooks();
-  //     Console.log('POPULAR BOOK', books);
-  //     if (currentState is BookLoaded) {
-  //       emit(currentState.copyWith(popularBooks: books));
-  //     } else {
-  //       emit(BookLoaded(popularBooks: books));
-  //     }
-  //   } catch (e) {
-  //     emit(BookFailed(error: e.toString()));
-  //   }
-  // }
-
   Future<void> getOneBook(String id) async {
     final currentState = state;
     emit(BookLoading());

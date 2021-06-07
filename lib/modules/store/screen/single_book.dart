@@ -138,7 +138,8 @@ class _SingleBookState extends State<SingleBook> {
                                 onPressed: () {},
                                 style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all<Color>(kWhite),
+                                      MaterialStateProperty.all<Color>(
+                                          Theme.of(context).cardColor),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
@@ -153,9 +154,12 @@ class _SingleBookState extends State<SingleBook> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.list_alt,
-                                      color: kBlack,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .color,
                                     ),
                                     Text(
                                       'Preview',
@@ -173,7 +177,8 @@ class _SingleBookState extends State<SingleBook> {
                                 onPressed: () {},
                                 style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all<Color>(kWhite),
+                                      MaterialStateProperty.all<Color>(
+                                          Theme.of(context).cardColor),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(

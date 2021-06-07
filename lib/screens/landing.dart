@@ -25,8 +25,8 @@ class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return FloatingNavBar(
-      color: kWhite,
-      selectedIconColor: kBlack,
+      color: Theme.of(context).cardColor,
+      selectedIconColor: Theme.of(context).textTheme.bodyText1!.color!,
       unselectedIconColor: kGrey,
       borderRadius: kCardRadius,
       items: [

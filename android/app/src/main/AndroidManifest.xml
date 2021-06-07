@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cloudfift.bookstore">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="boilerplate"
+        android:label="Book Store"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

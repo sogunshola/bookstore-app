@@ -9,8 +9,10 @@ import 'blocs/application/application_bloc.dart';
 import 'blocs/theme/theme_bloc.dart';
 import 'configs/app_globals.dart';
 import 'configs/app_theme.dart';
+import 'configs/constants.dart';
 import 'configs/routes.dart';
 import 'generated/l10n.dart';
+import 'modules/store/cubit/book_cubit.dart';
 import 'utils/app_preferences.dart';
 import 'utils/internet_checker/config.dart';
 import 'utils/internet_checker/internet_checker.dart';
@@ -58,36 +60,42 @@ void internetChecker() {
   connectionStatus.initialize();
   ConnectionChecker _checker = ConnectionChecker();
 
-  getIt.get<AppGlobals>().connectivity = _checker;
+  globals.connectivity = _checker;
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  ThemeBloc _themeBloc;
-  ApplicationBloc _applicationBloc;
+  late ThemeBloc _themeBloc;
+  late ApplicationBloc _applicationBloc;
+  late BookCubit _bookCubit;
 
   @override
   void initState() {
     /// The glue between the widgets layer and the Flutter engine.
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     _initBlocs();
     super.initState();
   }
 
   void _initBlocs() {
     _themeBloc = ThemeBloc();
-    getIt.get<AppGlobals>().themeBloc = _themeBloc;
+    globals.themeBloc = _themeBloc;
 
     _applicationBloc = ApplicationBloc(themeBloc: _themeBloc);
-    getIt.get<AppGlobals>().applicationBloc = _applicationBloc;
+    globals.applicationBloc = _applicationBloc;
+
+    _bookCubit = BookCubit();
+    globals.bookCubit = _bookCubit;
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     _themeBloc.close();
-    getIt.get<AppGlobals>().themeBloc.close();
+    globals.themeBloc!.close();
     _applicationBloc.close();
-    getIt.get<AppGlobals>().applicationBloc.close();
+    globals.applicationBloc!.close();
+    _bookCubit.close();
+    globals.bookCubit!.close();
 
     super.dispose();
   }
@@ -96,7 +104,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   /// to the foreground.
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (getIt.get<AppGlobals>().isUserOnboarded) {
+    if (globals.isUserOnboarded) {
       /// Notify ApplicationBloc with a new [LifecycleChangedApplicationEvent].
       _applicationBloc.add(LifecycleChangedApplicationEvent(state: state));
     }
@@ -107,21 +115,22 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ApplicationBloc, ApplicationState>(
-      bloc: getIt.get<AppGlobals>().applicationBloc,
+      bloc: globals.applicationBloc,
       buildWhen: (previousState, currentState) =>
           (currentState is LifecycleChangeInProgressApplicationState &&
               currentState.state == AppLifecycleState.resumed) ||
           currentState is! LifecycleChangeInProgressApplicationState,
       builder: (context, state) {
-        final Locale selectedLocale = getIt.get<AppGlobals>().selectedLocale;
+        final Locale selectedLocale = globals.selectedLocale ?? kDefaultLocale;
         return BlocBuilder<ThemeBloc, ThemeState>(
-          bloc: getIt.get<AppGlobals>().themeBloc,
+          bloc: globals.themeBloc,
           builder: (context, state) {
             return MaterialApp(
-              title: 'SchoolX Student',
+              title: 'Online Bookstore',
               theme: getIt.get<AppTheme>().lightTheme,
               darkTheme: getIt.get<AppTheme>().darkTheme,
               initialRoute: Routes.splashScreen,
+              color: kPrimaryColor,
               routes: Routes().generateRoutes(context),
               locale: selectedLocale,
               supportedLocales: L10n.delegate.supportedLocales,
@@ -136,7 +145,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                   selectedLocale,
               builder: (context, child) {
                 return MediaQuery(
-                  child: child,
+                  child: child!,
                   data: MediaQuery.of(context),
                 );
               },

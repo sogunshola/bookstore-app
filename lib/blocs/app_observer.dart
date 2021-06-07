@@ -8,7 +8,7 @@ class AppObserver extends BlocObserver {
   /// Called whenever an [event] is `added` to any [bloc] with the given [bloc]
   /// and [event].
   @override
-  void onEvent(Bloc<dynamic, dynamic> bloc, Object event) {
+  void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
     super.onEvent(bloc, event);
     Console.log('BLOC EVENT', event.toString());
   }
@@ -33,8 +33,6 @@ class AppObserver extends BlocObserver {
   void onError(BlocBase<dynamic> cubit, Object error, StackTrace stackTrace) {
     super.onError(cubit, error, stackTrace);
     Console.log('BLOC ERROR', error.toString(), error: error);
-    if (stackTrace != null) {
-      Console.log('STACKTRACE', stackTrace.toString(), error: stackTrace);
-    }
+    Console.log('STACKTRACE', stackTrace.toString(), error: stackTrace);
   }
 }

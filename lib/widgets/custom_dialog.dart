@@ -8,19 +8,19 @@ import 'strut_text.dart';
 /// Custom [Dialog] box used to show warnings, errors and confirmation messages.
 class CustomDialog extends StatelessWidget {
   const CustomDialog({
-    Key key,
-    @required this.title,
-    @required this.message,
+    Key? key,
+    required this.title,
+    required this.message,
     this.actions,
     this.icon,
     this.iconBackgroundColor,
   }) : super(key: key);
 
   /// Buttons to be shown in dialog's [ButtonBar].
-  final List<Widget> actions;
+  final List<Widget>? actions;
   final String title, message;
-  final IconData icon;
-  final Color iconBackgroundColor;
+  final IconData? icon;
+  final Color? iconBackgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +44,19 @@ class CustomDialog extends StatelessWidget {
                 if (title.isNotNullOrEmpty)
                   StrutText(
                     title,
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headline5!,
                   ),
                 const SizedBox(height: kPaddingM),
                 StrutText(
                   message,
-                  style: Theme.of(context).textTheme.subtitle1.w300.fs16,
+                  style: Theme.of(context).textTheme.subtitle1!.w300.fs16,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: kPaddingM),
                 ButtonBar(
                   buttonMinWidth: 100,
                   alignment: MainAxisAlignment.spaceEvenly,
-                  children: actions,
+                  children: actions!,
                 ),
               ],
             ),

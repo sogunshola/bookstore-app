@@ -1,12 +1,16 @@
 class PaginationModel {
   int page = 1;
-  int pageCount;
+  late int pageCount;
   int perPage = 10;
-  int total;
-  int skipped;
+  int? total;
+  int? skipped;
 
   PaginationModel(
-      {this.page, this.pageCount, this.perPage, this.total, this.skipped});
+      {required this.page,
+      required this.pageCount,
+      required this.perPage,
+      this.total,
+      this.skipped});
 
   PaginationModel.fromJson(Map<String, dynamic> json) {
     page = json['page'];

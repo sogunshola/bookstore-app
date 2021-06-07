@@ -6,14 +6,14 @@ import 'console.dart';
 ///
 /// Access to NSUserDefaults on iOS and SharedPreferences on Android.
 class AppPreferences {
-  static AppPreferences _instance;
-  static SharedPreferences _preferences;
+  static late AppPreferences _instance;
+  static late SharedPreferences _preferences;
 
   static Future<AppPreferences> getInstance() async {
-    _instance ??= AppPreferences();
+    _instance = AppPreferences();
 
     try {
-      _preferences ??= await SharedPreferences.getInstance();
+      _preferences = await SharedPreferences.getInstance();
     } on Exception catch (e) {
       Console.log('EXCEPTION', e, error: e);
       // ignore: invalid_use_of_visible_for_testing_member
@@ -34,7 +34,7 @@ class AppPreferences {
   }
 
   /// Saves a boolean [value] to persistent storage in the background.
-  Future<bool> setBool(String key, {bool value}) {
+  Future<bool> setBool(String key, {required bool value}) {
     return _preferences.setBool(key, value);
   }
 

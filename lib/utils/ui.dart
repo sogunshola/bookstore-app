@@ -6,13 +6,13 @@ import '../widgets/custom_dialog.dart';
 
 /// Custom UI dialogs: message, confirmation and error.
 class UI {
-  static Future<void> showCustomDialog(
+  static Future<Object?> showCustomDialog(
     BuildContext context, {
-    String title,
-    String message,
-    IconData icon,
-    Color iconBackgroundColor,
-    @required List<Widget> actions,
+    required String title,
+    required String message,
+    IconData? icon,
+    Color? iconBackgroundColor,
+    required List<Widget> actions,
   }) async {
     return showGeneralDialog(
       barrierDismissible: false,
@@ -35,17 +35,17 @@ class UI {
         );
       },
       pageBuilder: (context, animation, secondaryAnimation) {
-        return null;
+        return Container();
       },
     );
   }
 
-  static Future<void> showMessage(
+  static Future<Object?> showMessage(
     BuildContext context, {
-    String title,
-    String message,
-    @required String buttonText,
-    void Function() onPressed,
+    required String title,
+    required String message,
+    required String buttonText,
+    void Function()? onPressed,
   }) async {
     return showCustomDialog(
       context,
@@ -69,13 +69,13 @@ class UI {
     );
   }
 
-  static Future<void> confirmationDialogBox(
+  static Future<Object?> confirmationDialogBox(
     BuildContext context, {
-    String title,
-    String message,
-    String okButtonText,
-    String cancelButtonText,
-    @required void Function() onConfirmation,
+    required String title,
+    required String message,
+    String? okButtonText,
+    String? cancelButtonText,
+    required void Function() onConfirmation,
   }) async {
     return showCustomDialog(
       context,
@@ -106,11 +106,11 @@ class UI {
     );
   }
 
-  static Future<void> showErrorDialog(
+  static Future<Object?> showErrorDialog(
     BuildContext context, {
-    String title,
-    String message,
-    void Function() onPressed,
+    String? title,
+    required String message,
+    void Function()? onPressed,
   }) async {
     return showCustomDialog(
       context,

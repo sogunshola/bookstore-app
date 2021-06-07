@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 /// A controller for an editable text field that supports input masking.
 class MaskedTextEditingController extends TextEditingController {
   MaskedTextEditingController({
-    String text,
-    this.mask,
-    Map<String, RegExp> translator,
+    required String text,
+    required this.mask,
+    Map<String, RegExp>? translator,
   }) : super(text: text) {
-    this.translator = translator ?? MaskedTextEditingController.getDefaultTranslator();
+    this.translator =
+        translator ?? MaskedTextEditingController.getDefaultTranslator();
 
     addListener(() => updateText(this.text));
 
@@ -21,7 +22,7 @@ class MaskedTextEditingController extends TextEditingController {
   /// '0' - any digit
   /// '@' - any alphanumeric character
   /// '*' - any character
-  Map<String, RegExp> translator;
+  Map<String, RegExp>? translator;
 
   String _lastUpdatedText = '';
 
@@ -46,7 +47,7 @@ class MaskedTextEditingController extends TextEditingController {
 
   void moveCursorToEnd() {
     final String text = _lastUpdatedText;
-    selection = TextSelection.fromPosition(TextPosition(offset: (text ?? '').length));
+    selection = TextSelection.fromPosition(TextPosition(offset: (text).length));
   }
 
   @override
@@ -59,7 +60,12 @@ class MaskedTextEditingController extends TextEditingController {
 
   /// Our default translator.
   static Map<String, RegExp> getDefaultTranslator() {
-    return <String, RegExp>{'A': RegExp(r'[A-Za-z]'), '0': RegExp(r'[0-9]'), '@': RegExp(r'[A-Za-z0-9]'), '*': RegExp(r'.*')};
+    return <String, RegExp>{
+      'A': RegExp(r'[A-Za-z]'),
+      '0': RegExp(r'[0-9]'),
+      '@': RegExp(r'[A-Za-z0-9]'),
+      '*': RegExp(r'.*')
+    };
   }
 
   String _applyMask(String mask, String value) {
@@ -91,8 +97,8 @@ class MaskedTextEditingController extends TextEditingController {
       }
 
       // apply translator if match
-      if (translator.containsKey(maskChar)) {
-        if (translator[maskChar].hasMatch(valueChar)) {
+      if (translator!.containsKey(maskChar)) {
+        if (translator![maskChar]!.hasMatch(valueChar)) {
           result += valueChar;
           maskCharIndex += 1;
         }

@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
 
 import '../configs/http_client.dart';
 import '../models/pagination_model.dart';
 
 abstract class AbstractApiService extends HttpClient {
   String resource;
-  AbstractApiService({@required this.resource}) : super(resource: resource);
+  AbstractApiService({required this.resource}) : super(resource: resource);
   Future getAll(
-      {PaginationModel pagination,
+      {PaginationModel? pagination,
       Map<String, dynamic> args = const {}}) async {
     return await get(data: {
-      "page": pagination.page,
+      "page": pagination!.page,
       "perPage": pagination.perPage,
       ...args
     });

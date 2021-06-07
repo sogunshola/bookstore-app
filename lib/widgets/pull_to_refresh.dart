@@ -6,21 +6,21 @@ import '../generated/l10n.dart';
 /// using the [SmartRefresher] plugin.
 class PullToRefresh extends StatelessWidget {
   const PullToRefresh({
-    Key key,
+    Key? key,
     this.child,
     this.onLoading,
     this.onRefresh,
-    this.controller,
+    required this.controller,
     this.enablePullDown,
     this.enablePullUp,
   }) : super(key: key);
 
-  final Widget child;
-  final void Function() onRefresh;
-  final void Function() onLoading;
+  final Widget? child;
+  final void Function()? onRefresh;
+  final void Function()? onLoading;
   final RefreshController controller;
-  final bool enablePullDown;
-  final bool enablePullUp;
+  final bool? enablePullDown;
+  final bool? enablePullUp;
 
   @override
   Widget build(BuildContext context) {

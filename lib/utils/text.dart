@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 extension TextExtension on Text {
-  Text setStrutStyle({StrutStyle strutStyle}) {
+  Text setStrutStyle({StrutStyle? strutStyle}) {
     if (strutStyle != null) {
       return copyWith(strutStyle: strutStyle);
     }
 
     return copyWith(
       strutStyle: StrutStyle.fromTextStyle(
-        style,
+        style!,
         forceStrutHeight: true,
       ),
     );
@@ -18,20 +18,20 @@ extension TextExtension on Text {
   /// Creates a copy of this Text but the given fields will be replaced with
   /// the new values.
   Text copyWith({
-    Key key,
-    StrutStyle strutStyle,
-    TextAlign textAlign,
-    Locale locale,
-    bool softWrap,
-    TextOverflow overflow,
-    double textScaleFactor,
-    int maxLines,
-    String semanticsLabel,
-    TextWidthBasis textWidthBasis,
-    TextStyle style,
+    Key? key,
+    StrutStyle? strutStyle,
+    TextAlign? textAlign,
+    Locale? locale,
+    bool? softWrap,
+    TextOverflow? overflow,
+    double? textScaleFactor,
+    int? maxLines,
+    String? semanticsLabel,
+    TextWidthBasis? textWidthBasis,
+    TextStyle? style,
   }) {
     return Text(
-      data,
+      data!,
       key: key ?? this.key,
       strutStyle: strutStyle ?? this.strutStyle,
       textAlign: textAlign ?? this.textAlign,

@@ -3,6 +3,9 @@ import 'package:flutter/scheduler.dart';
 
 import '../blocs/application/application_bloc.dart';
 import '../blocs/theme/theme_bloc.dart';
+import '../main.dart';
+import '../modules/store/book_model.dart';
+import '../modules/store/cubit/book_cubit.dart';
 import '../utils/internet_checker/internet_checker.dart';
 import 'app_theme.dart';
 
@@ -16,19 +19,19 @@ class AppGlobals {
   static final AppGlobals instance = AppGlobals._();
 
   /// [GlobalKey] for our bottom bar.
-  GlobalKey globalKeyBottomBar;
+  GlobalKey? globalKeyBottomBar;
 
   /// [GlobalKey] for internet connectivity
-  ConnectionChecker connectivity;
+  ConnectionChecker? connectivity;
 
   /// [GlobalKey] for our [HomeScreen].
-  GlobalKey globalKeyHomeScreen;
+  GlobalKey? globalKeyHomeScreen;
 
   /// [GlobalKey] for our [SearchScreen].
-  GlobalKey globalKeySearchScreen;
+  GlobalKey? globalKeySearchScreen;
 
   /// [GlobalKey] for tab bar in [SearchScreen].
-  GlobalKey globalKeySearchTabs;
+  GlobalKey? globalKeySearchTabs;
 
   /// Dark Theme option
   DarkOption darkThemeOption = DarkOption.dynamic;
@@ -37,29 +40,35 @@ class AppGlobals {
   // UserModel user;
 
   /// Authentication token
-  String token;
+  String? token;
 
   /// Currently selected [Locale].
-  Locale selectedLocale;
+  Locale? selectedLocale;
 
   /// Is user onbaorded or this is their first run?
   bool isUserOnboarded = false;
 
   /// App is running on emulator (or real device)?
-  bool isEmulator;
+  bool? isEmulator;
 
   /// Is the current locale RTL?
-  bool isRTL;
+  bool? isRTL;
 
   ///Themebloc instance
-  ThemeBloc themeBloc;
+  ThemeBloc? themeBloc;
 
   ///Themebloc instance
-  ApplicationBloc applicationBloc;
+  ApplicationBloc? applicationBloc;
+
+  ///Bookcubit instance
+  BookCubit? bookCubit;
+
+  ///Bookmarked books
+  List<Book> bookmarks = [];
 
   /// The current brightness mode of the host platform.
   Brightness get getPlatformBrightness =>
-      SchedulerBinding.instance.window.platformBrightness;
+      SchedulerBinding.instance!.window.platformBrightness;
 
   /// Is the current brightness mode of the host platform dark?
   bool get isPlatformBrightnessDark {
@@ -74,3 +83,5 @@ class AppGlobals {
     }
   }
 }
+
+AppGlobals globals = getIt.get<AppGlobals>();

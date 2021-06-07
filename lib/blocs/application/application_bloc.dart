@@ -17,7 +17,7 @@ part 'application_state.dart';
 class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
   ApplicationBloc({
     // this.authBloc,
-    this.themeBloc,
+    required this.themeBloc,
   }) : super(InitialApplicationState());
 
   // final AuthBloc authBloc;

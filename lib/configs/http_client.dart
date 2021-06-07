@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 import 'api_config.dart';
 
@@ -6,7 +5,7 @@ class HttpClient {
   final api = ApiConfigService();
   String resource;
 
-  HttpClient({@required this.resource});
+  HttpClient({required this.resource});
 
   Future get({String url = '', dynamic data}) async {
     await api.init();

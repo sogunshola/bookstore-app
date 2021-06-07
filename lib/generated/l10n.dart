@@ -10,39 +10,44 @@ import 'intl/messages_all.dart';
 
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
-// ignore_for_file: avoid_redundant_argument_values
+// ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
 
 class L10n {
   L10n();
-  
-  static L10n current;
-  
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
 
-  static Future<L10n> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name); 
-    return initializeMessages(localeName).then((_) {
-      Intl.defaultLocale = localeName;
-      L10n.current = L10n();
-      
-      return L10n.current;
-    });
-  } 
+  static L10n? _current;
 
-  static L10n of(BuildContext context) {
-    return Localizations.of<L10n>(context, L10n);
+  static L10n get current {
+    assert(_current != null,
+        'No instance of L10n was loaded. Try to initialize the L10n delegate before accessing L10n.current.');
+    return _current!;
   }
 
-  /// `FLUTTER BOILER PLATE BY SHALOMCODES`
-  String get commonBoilerPlateText {
-    return Intl.message(
-      'FLUTTER BOILER PLATE BY SHALOMCODES',
-      name: 'commonBoilerPlateText',
-      desc: '',
-      args: [],
-    );
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+
+  static Future<L10n> load(Locale locale) {
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name);
+    return initializeMessages(localeName).then((_) {
+      Intl.defaultLocale = localeName;
+      final instance = L10n();
+      L10n._current = instance;
+
+      return instance;
+    });
+  }
+
+  static L10n of(BuildContext context) {
+    final instance = L10n.maybeOf(context);
+    assert(instance != null,
+        'No instance of L10n present in the widget tree. Did you add L10n.delegate in localizationsDelegates?');
+    return instance!;
+  }
+
+  static L10n? maybeOf(BuildContext context) {
+    return Localizations.of<L10n>(context, L10n);
   }
 
   /// `in 1 day, {hours} hours`
@@ -234,6 +239,96 @@ class L10n {
       args: [],
     );
   }
+
+  /// `Let's sign you in`
+  String get loginScreenTitle {
+    return Intl.message(
+      'Let\'s sign you in',
+      name: 'loginScreenTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get loginButtonText {
+    return Intl.message(
+      'Sign In',
+      name: 'loginButtonText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get usernameHintText {
+    return Intl.message(
+      'Username',
+      name: 'usernameHintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get passwordHintText {
+    return Intl.message(
+      'Password',
+      name: 'passwordHintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular Books`
+  String get popularBooks {
+    return Intl.message(
+      'Popular Books',
+      name: 'popularBooks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Newest`
+  String get newestBooks {
+    return Intl.message(
+      'Newest',
+      name: 'newestBooks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy Now for {price}`
+  String buyNowButtonText(Object price) {
+    return Intl.message(
+      'Buy Now for $price',
+      name: 'buyNowButtonText',
+      desc: '',
+      args: [price],
+    );
+  }
+
+  /// `{rate}/5.0`
+  String rateScore(Object rate) {
+    return Intl.message(
+      '$rate/5.0',
+      name: 'rateScore',
+      desc: '',
+      args: [rate],
+    );
+  }
+
+  /// `Bookmarks`
+  String get bookmarks {
+    return Intl.message(
+      'Bookmarks',
+      name: 'bookmarks',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {
@@ -253,11 +348,9 @@ class AppLocalizationDelegate extends LocalizationsDelegate<L10n> {
   bool shouldReload(AppLocalizationDelegate old) => false;
 
   bool _isSupported(Locale locale) {
-    if (locale != null) {
-      for (var supportedLocale in supportedLocales) {
-        if (supportedLocale.languageCode == locale.languageCode) {
-          return true;
-        }
+    for (var supportedLocale in supportedLocales) {
+      if (supportedLocale.languageCode == locale.languageCode) {
+        return true;
       }
     }
     return false;

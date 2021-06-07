@@ -10,7 +10,7 @@ const String kAppVersion = '1.0.0';
 ///
 /// Use null for system font or font name declared in pubspec.yaml like Roboto
 /// or Raleway.
-const String kFontFamily = "Roboto";
+const String kFontFamily = "Poppins";
 
 // Date/time formats
 const String kDateFormat = 'MMM d, y';
@@ -27,10 +27,10 @@ const double kBadgeRadius = 16.0;
 const double kTimelineDateSize = 88.0;
 
 // Colors
-const Color kPrimaryColor = Color(0xFF0078CE);
+const Color kPrimaryColor = Color(0xFF000000);
 const Color kWhite = Color(0xFFFFFFFF);
 const Color kBlack = Color(0xFF000000);
-const Color kOrange = Color(0xFFEB6200);
+const Color kGrey = Color(0xFFCCCCCC);
 const Color kTransparent = Colors.transparent;
 
 // Padding

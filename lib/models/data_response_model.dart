@@ -1,4 +1,3 @@
-import 'data_response_error_model.dart';
 
 /// Data response model.
 ///
@@ -15,25 +14,27 @@ import 'data_response_error_model.dart';
 /// If there were no errors returned, the "errors" field is not present on the
 /// response.
 class DataResponseModel {
-  DataResponseModel({this.data, this.errors, this.message, this.status});
+  DataResponseModel(
+      {this.data, this.error, required this.books, required this.total});
 
   factory DataResponseModel.fromJson(Map<String, dynamic> json) {
-    final List<dynamic> _errors =
-        json['errors'] as List<dynamic> ?? <dynamic>[];
+    // final List<dynamic> _errors = json['errors'] as List<dynamic>;
 
     return DataResponseModel(
-        data:
-            json['data']['data'] as Map<String, dynamic> ?? <String, dynamic>{},
-        errors: _errors
-            .map<DataResponseErrorModel>((dynamic json) =>
-                DataResponseErrorModel.fromJson(json as Map<String, dynamic>))
-            .toList(),
-        message: json['data']['message'],
-        status: json['data']['status']);
+        // data: json['data']['data'] as Map<String, dynamic>,
+        // errors: _errors
+        //     .map<DataResponseErrorModel>((dynamic json) =>
+        //         DataResponseErrorModel.fromJson(json as Map<String, dynamic>))
+        //     .toList(),
+        error: json['error'],
+        books: json['books'],
+        total: json['total']);
   }
 
-  final Map<String, dynamic> data;
-  final List<DataResponseErrorModel> errors;
-  final String message;
-  final bool status;
+  final Map<String, dynamic>? data;
+  // final List<DataResponseErrorModel>? errors;
+  final List<dynamic>? books;
+  // final String message;
+  final String? error;
+  final String total;
 }

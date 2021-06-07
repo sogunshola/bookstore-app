@@ -5,10 +5,10 @@ import 'app_globals.dart';
 
 class ApiConfigService {
   Dio dio = Dio();
-  String token;
+  String? token;
 
-  void init() async {
-    await getIt.get<AppGlobals>().connectivity.checkConnection();
+  Future<void> init() async {
+    await getIt.get<AppGlobals>().connectivity!.checkConnection();
     token = getIt.get<AppGlobals>().token;
     // this.token = await _storage.readValue('token');
   }
@@ -31,7 +31,7 @@ class ApiConfigService {
     if (server == 'local') return 'http://192.168.1.135:3000/api/';
 
     // Remote url
-    return 'https://api.website.app/';
+    return 'https://api.itbook.store/';
   }
 
   Map<String, dynamic> setHeaders() {

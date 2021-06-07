@@ -15,7 +15,8 @@ class ExpandableText extends StatefulWidget {
   _ExpandableTextState createState() => _ExpandableTextState();
 }
 
-class _ExpandableTextState extends State<ExpandableText> with TickerProviderStateMixin<ExpandableText> {
+class _ExpandableTextState extends State<ExpandableText>
+    with TickerProviderStateMixin<ExpandableText> {
   bool isExpanded = false;
 
   @override
@@ -28,13 +29,17 @@ class _ExpandableTextState extends State<ExpandableText> with TickerProviderStat
                 vsync: this,
                 duration: const Duration(milliseconds: 250),
                 child: ConstrainedBox(
-                  constraints: isExpanded ? const BoxConstraints() : const BoxConstraints(maxHeight: 60.0),
+                  constraints: isExpanded
+                      ? const BoxConstraints()
+                      : const BoxConstraints(maxHeight: 60.0),
                   child: Markdown(
                     data: widget.text,
                     padding: const EdgeInsets.all(0),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(p: Theme.of(context).textTheme.subtitle1.h15.w300),
+                    styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context))
+                        .copyWith(
+                            p: Theme.of(context).textTheme.subtitle1!.h15.w300),
                   ),
                 ),
               ),
@@ -48,7 +53,10 @@ class _ExpandableTextState extends State<ExpandableText> with TickerProviderStat
                     children: <Widget>[
                       StrutText(
                         L10n.of(context).commonReadMore.toUpperCase(),
-                        style: Theme.of(context).textTheme.overline.copyWith(color: Theme.of(context).hintColor),
+                        style: Theme.of(context)
+                            .textTheme
+                            .overline!
+                            .copyWith(color: Theme.of(context).hintColor),
                       ),
                       Icon(
                         Icons.keyboard_arrow_down,

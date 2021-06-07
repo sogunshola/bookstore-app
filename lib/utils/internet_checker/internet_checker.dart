@@ -1,7 +1,7 @@
 import 'config.dart';
 
 class ConnectionChecker {
-  bool connected;
+  bool connected = false;
 
   dynamic checkConnection() async {
     ConnectionStatusSingleton connectionStatus =

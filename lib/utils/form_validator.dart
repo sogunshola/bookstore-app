@@ -5,7 +5,7 @@ class FormValidator {
   /// Validator that requires the field have a non-empty value.
   static FormFieldValidator<String> isRequired(String errorMessage) {
     return (value) {
-      return value.isEmpty ? errorMessage : null;
+      return value!.isEmpty ? errorMessage : null;
     };
   }
 
@@ -18,7 +18,7 @@ class FormValidator {
   /// ```
   static FormFieldValidator<String> isEmail(String errorMessage) {
     return (value) {
-      if (value.isEmpty) {
+      if (value!.isEmpty) {
         return null;
       } else {
         final RegExp emailRegex = RegExp(
@@ -31,26 +31,26 @@ class FormValidator {
   /// Validator that requires the length of the field's value to be greater than
   /// or equal to the provided minimum length.
   static FormFieldValidator<String> isMinLength(
-      {int length, String errorMessage}) {
+      {required int length, String? errorMessage}) {
     return (value) {
-      return value.length < length ? errorMessage : null;
+      return value!.length < length ? errorMessage : null;
     };
   }
 
   /// Validator that requires the length of the field's value to be less or
   /// equal to the provided maximum length.
   static FormFieldValidator<String> isMaxLength(
-      {int length, String errorMessage}) {
+      {required int length, String? errorMessage}) {
     return (value) {
-      return value.length > length ? errorMessage : null;
+      return value!.length > length ? errorMessage : null;
     };
   }
 
   /// Validator that requires the field's value to match the regex string.
   static FormFieldValidator<String> matchesRegex(
-      {String regex, String errorMessage}) {
+      {required String regex, String? errorMessage}) {
     return (value) {
-      return RegExp(regex).hasMatch(value) ? null : errorMessage;
+      return RegExp(regex).hasMatch(value!) ? null : errorMessage;
     };
   }
 
@@ -68,7 +68,7 @@ class FormValidator {
       List<FormFieldValidator<String>> validators) {
     return (value) {
       for (final FormFieldValidator<String> validator in validators) {
-        final String result = validator(value);
+        final String? result = validator(value);
         if (result != null) {
           return result;
         }

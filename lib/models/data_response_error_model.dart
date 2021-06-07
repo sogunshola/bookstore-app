@@ -6,8 +6,8 @@ class DataResponseErrorModel {
 
   factory DataResponseErrorModel.fromJson(Map<String, dynamic> json) {
     return DataResponseErrorModel(
-      json['code'] as String ?? '',
-      json['message'] as String ?? '',
+      json['code'] as String,
+      json['message'] as String,
     );
   }
 

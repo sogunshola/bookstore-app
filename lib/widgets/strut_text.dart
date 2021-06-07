@@ -4,7 +4,7 @@ import '../utils/text.dart';
 class StrutText extends StatelessWidget {
   const StrutText(
     this.data, {
-    @required this.style,
+    required this.style,
     this.textAlign,
     this.overflow,
     this.maxLines,
@@ -24,12 +24,12 @@ class StrutText extends StatelessWidget {
   final TextStyle style;
 
   /// How the text should be aligned horizontally.
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
 
   /// How visual overflow should be handled.
   ///
   /// Defaults to retrieving the value from the nearest [DefaultTextStyle] ancestor.
-  final TextOverflow overflow;
+  final TextOverflow? overflow;
 
   /// An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according
@@ -42,7 +42,7 @@ class StrutText extends StatelessWidget {
   /// an explicit number for its [DefaultTextStyle.maxLines], then the
   /// [DefaultTextStyle] value will take precedence. You can use a [RichText]
   /// widget directly to entirely override the [DefaultTextStyle].
-  final int maxLines;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {

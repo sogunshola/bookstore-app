@@ -41,9 +41,9 @@ class AppTheme {
         hoverColor: Color(0x0a000000),
       ),
       appBarTheme: const AppBarTheme(
-        brightness: Brightness.dark,
-        color: kPrimaryColor,
-      ),
+          brightness: Brightness.light,
+          color: Color(0xfff8f8f8),
+          iconTheme: IconThemeData(color: kBlack)),
       tabBarTheme: const TabBarTheme(
         labelColor: Colors.white,
       ),
@@ -96,9 +96,9 @@ class AppTheme {
         focusColor: Color(0x1f000000),
         hoverColor: Color(0x0a000000),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         brightness: Brightness.dark,
-        color: Colors.grey[900],
+        color: Color(0xff20242b),
       ),
       tabBarTheme: const TabBarTheme(
         labelColor: Colors.white,
@@ -131,6 +131,6 @@ class AppTheme {
     );
   }
 
-  ThemeData lightTheme;
-  ThemeData darkTheme;
+  late ThemeData lightTheme;
+  late ThemeData darkTheme;
 }

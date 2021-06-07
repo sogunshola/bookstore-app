@@ -6,7 +6,7 @@ extension StringExtension on String {
   bool get isNotNullOrEmpty => this != null && isNotEmpty;
   bool get isNullOrEmpty => this == null || isEmpty;
 
-  List<TextSpan> getSpans({String matchWord = '', TextStyle style}) {
+  List<TextSpan> getSpans({String matchWord = '', TextStyle? style}) {
     final List<TextSpan> spans = <TextSpan>[];
     int spanBoundary = 0;
 

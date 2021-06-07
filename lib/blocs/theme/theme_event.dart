@@ -6,7 +6,7 @@ abstract class ThemeEvent {
 }
 
 class ChangeRequestedThemeEvent extends ThemeEvent {
-  ChangeRequestedThemeEvent({this.darkOption});
+  ChangeRequestedThemeEvent({required this.darkOption});
 
   final DarkOption darkOption;
 }

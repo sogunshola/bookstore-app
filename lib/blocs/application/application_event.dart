@@ -13,7 +13,7 @@ class SettingsLoadedApplicationEvent extends ApplicationEvent {}
 class OnboardingCompletedApplicationEvent extends ApplicationEvent {}
 
 class LifecycleChangedApplicationEvent extends ApplicationEvent {
-  LifecycleChangedApplicationEvent({this.state});
+  LifecycleChangedApplicationEvent({required this.state});
 
   final AppLifecycleState state;
 }

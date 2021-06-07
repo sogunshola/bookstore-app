@@ -4,7 +4,7 @@ import '../configs/constants.dart';
 /// Full screen loading indicator.
 class FullScreenIndicator extends StatelessWidget {
   const FullScreenIndicator({
-    Key key,
+    Key? key,
     this.color = kWhite,
     this.backgroundColor = kPrimaryColor,
   }) : super(key: key);

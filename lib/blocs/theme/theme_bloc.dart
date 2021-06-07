@@ -26,8 +26,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       ChangeRequestedThemeEvent event) async* {
     yield UpdateInProgressThemeState();
 
-    getIt.get<AppGlobals>().darkThemeOption =
-        event.darkOption ?? DarkOption.dynamic;
+    getIt.get<AppGlobals>().darkThemeOption = event.darkOption;
 
     final AppTheme theme = AppTheme();
 

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
@@ -125,6 +128,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         return BlocBuilder<ThemeBloc, ThemeState>(
           bloc: globals.themeBloc,
           builder: (context, state) {
+            SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+            ));
             return MaterialApp(
               title: 'Online Bookstore',
               theme: getIt.get<AppTheme>().lightTheme,
